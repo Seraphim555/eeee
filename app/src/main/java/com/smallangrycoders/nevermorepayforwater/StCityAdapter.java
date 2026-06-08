@@ -43,31 +43,31 @@ public class StCityAdapter  extends RecyclerView.Adapter<StCityAdapter.ViewHolde
     public void setArrayMyData(List<StCity> arrayMyData) {
         this.states = arrayMyData;
     }
+
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        position = holder.getAdapterPosition();
         StCity state = states.get(position);
         holder.nameView.setText(state.getName());
 
-        String tempro = this.context.getString(R.string.tempro);
-        holder.tempView.setText(tempro+ state.getTemp());
+        String tempText = state.getTemp() + "°C";
+        holder.tempView.setText(tempText);
 
-        if (state.getSyncDate()!= null){
-            String refreshed = this.context.getString(R.string.refreshed);
-            holder.syncDateView.setText(refreshed+state.getSyncDate().format(formatq));
+
+        if (state.getSyncDate() != null) {
+            String refreshed = context.getString(R.string.refreshed);
+            String dateText = refreshed + state.getSyncDate().format(formatq);
+            holder.syncDateView.setText(dateText);
+        } else {
+            holder.syncDateView.setText(R.string.noData);
         }
 
         int finalPosition = position;
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-                 onClickListener.onStCityClick(state, finalPosition);
-                if (state.getSyncDate()!= null){
-                    holder.tempView.setText(R.string.refresh_data);
-                    holder.syncDateView.setText(R.string.refresh_data);
-                }
+        holder.itemView.setOnClickListener(v -> {
+            onClickListener.onStCityClick(state, finalPosition);
+            if (state.getSyncDate() != null) {
+                holder.tempView.setText(R.string.refresh_data);
+                holder.syncDateView.setText(R.string.loading);
             }
         });
     }

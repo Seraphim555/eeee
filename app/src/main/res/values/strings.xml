@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">nevermorepayforwater</string>
-    <string name="refresh_data">Обновляем данные</string>
-    <string name="refreshed">Обновлено </string>
+    <string name="refresh_data">"🔄 Обновляем данные..."</string>
+    <string name="refreshed">"Обновлено:  "</string>
+    <string name="loading">"🔄 Запрос погоды..."</string>
+    <string name="noData">"Не обновлено"</string>
     <string name="tempro">t воздуха </string>
     <string name="forecast_addr">https://api.open-meteo.com/v1/forecast</string>
     <string name="lat_condition">\?latitude=</string>
